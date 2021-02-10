@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random User Name Generator</title>
+</head>
+<body>
+
+    <h1>Refresh to get new User name</h1>
+    <h2>Full Name: <span id="user-name"></span></h2>
+    <h2>Gender: <span id="gender"></span></h2>
+    <h2>Country: <span id="country"></span></h2>
+
+    <script>
+        fetch('https://randomuser.me/api/')
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            const user = data.results[0];
+            const name = user.name;
+            const userName = `${name.title} ${name.first} ${name.last}`
+            document.getElementById("user-name").innerText = userName;
+            document.getElementById("gender").innerText = user.gender;
+            document.getElementById("country").innerText = user.location.country;
+        })
+    </script>
+    
+</body>
+</html>
